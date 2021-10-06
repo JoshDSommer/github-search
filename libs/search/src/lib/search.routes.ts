@@ -5,11 +5,9 @@ export const searchRoutes = [
   {
     path: '',
     component: SearchComponent,
-    children: [
-      {
-        path: 'results',
-        component: SearchResultsComponent,
-      },
-    ],
+  },
+  {
+    path: 'results',
+    component: SearchResultsComponent,
   },
 ] as Routes;
