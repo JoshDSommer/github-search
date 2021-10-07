@@ -1,0 +1,12 @@
+<ul class="ml-auto flex items-center">
+  <li class="px-1"><a (click)="previousPage()"><</a></li>
+  <li
+    class="px-1"
+    [class.text-indigo-500]="page === pageNumber"
+    *ngFor="let pageNumber of numberOfPages"
+    (click)="gotoPage(pageNumber)"
+  >
+    {{ pageNumber }}
+  </li>
+  <li class="px-1"><a (click)="nextPage()">></a></li>
+</ul>
