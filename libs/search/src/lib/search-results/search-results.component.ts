@@ -1,8 +1,7 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { SearchResults } from './search-results.model';
 import { UsersService } from './users.service';
 
 @Component({
@@ -10,19 +9,14 @@ import { UsersService } from './users.service';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
 })
-export class SearchResultsComponent
-  implements OnInit, OnDestroy, AfterViewInit
-{
-  results$: Observable<SearchResults> | undefined;
+export class SearchResultsComponent implements AfterViewInit, OnDestroy {
+  results$ = this.userSearch.searchResults();
   subscription: Subscription | undefined;
   constructor(
     private userSearch: UsersService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
-
-  ngOnInit() {
-    this.results$ = this.userSearch.searchResults();
-  }
 
   ngAfterViewInit() {
     this.subscription = this.activatedRoute.queryParams
@@ -38,5 +32,13 @@ export class SearchResultsComponent
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  pageChange(page: number) {
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: { page },
+      queryParamsHandling: 'merge', // remove to replace all query params by provided
+    });
   }
 }
