@@ -9,8 +9,8 @@ export const appRoutes: Routes = [
   {
     path: 'search',
     loadChildren: () =>
-      import('../../../../libs/search/src/lib/search.module').then(
-        (module) => module.SearchModule
+      import('../../../../libs/search/src/lib/search-feature.module').then(
+        (module) => module.SearchFeatureModule
       ),
   },
 ];
