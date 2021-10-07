@@ -41,4 +41,12 @@ export class SearchResultsComponent implements AfterViewInit, OnDestroy {
       queryParamsHandling: 'merge', // remove to replace all query params by provided
     });
   }
+
+  queryChange(query: string) {
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: { query, page: 1 },
+      queryParamsHandling: 'merge', // remove to replace all query params by provided
+    });
+  }
 }

@@ -1,8 +1,12 @@
+<div class="w-half">
+  <github-search-search-box
+    (queryChanged)="queryChange($event)"
+  ></github-search-search-box>
+</div>
 <ng-container *ngIf="(results$ | async)! as results">
   <github-search-search-results-view
     [results]="results"
   ></github-search-search-results-view>
-
   <github-search-page-numbers
     [page]="results.page"
     [numberOfPages]="results.pages"
