@@ -1,10 +1,17 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { SearchResults } from '../search-results.model';
 
 @Component({
   selector: 'github-search-page-numbers',
   templateUrl: './page-numbers.component.html',
   styleUrls: ['./page-numbers.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageNumbersComponent {
   @Output() selectedPage = new EventEmitter<number>();
