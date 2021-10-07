@@ -1,4 +1,4 @@
-<ol start="1">
+<ol [start]="results.start" class="list-decimal">
   <li *ngFor="let item of results?.items">
     {{ item.login }}
   </li>

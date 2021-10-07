@@ -22,7 +22,7 @@ export class SearchResultsComponent implements AfterViewInit, OnDestroy {
     this.subscription = this.activatedRoute.queryParams
       .pipe(
         tap((queryParams) =>
-          this.userSearch.search(queryParams?.query, queryParams?.page || 1)
+          this.userSearch.search(queryParams?.query, +queryParams?.page || 1)
         )
       )
       .subscribe();
