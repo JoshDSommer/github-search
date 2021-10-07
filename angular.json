@@ -120,6 +120,31 @@
           }
         }
       }
+    },
+    "search": {
+      "projectType": "library",
+      "root": "libs/search",
+      "sourceRoot": "libs/search/src",
+      "prefix": "github-search",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/search"],
+          "options": {
+            "jestConfig": "libs/search/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/search/src/**/*.ts",
+              "libs/search/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -1,0 +1,19 @@
+<p>
+  Displaying {{ results.start }}-{{
+    results.items.length + results.start - 1
+  }}
+  of
+  {{ results.total_count }}
+</p>
+<ul class="ml-auto flex items-center">
+  <li class="px-1 cursor-pointer"><a (click)="previousPage()"><</a></li>
+  <li
+    class="px-1 cursor-pointer"
+    [class.text-indigo-500]="results.page === pageNumber"
+    *ngFor="let pageNumber of results.pages"
+    (click)="gotoPage(pageNumber)"
+  >
+    {{ pageNumber }}
+  </li>
+  <li class="px-1 cursor-pointer"><a (click)="nextPage()">></a></li>
+</ul>
