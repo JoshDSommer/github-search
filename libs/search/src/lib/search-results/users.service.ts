@@ -7,6 +7,7 @@ interface SearchState {
   query: string;
   selectedPage: number;
   searchUrl: string;
+  pageSize: number;
 }
 
 @Injectable({
@@ -15,7 +16,6 @@ interface SearchState {
 export class UsersService {
   private searchUrl = 'https://api.github.com/search/users';
   private searchState = new Subject<SearchState>();
-
   constructor(private http: HttpClient) {}
 
   searchResults() {
@@ -25,6 +25,10 @@ export class UsersService {
   }
 
   private calculateNumberOfPages(totalCount: number, pageLength: number) {
+    const singleResultsPage = totalCount === pageLength;
+    if (singleResultsPage) {
+      return [1];
+    }
     const remainingResults = totalCount % pageLength;
     const totalCountWithRemainderVariance =
       totalCount + (pageLength - remainingResults);
@@ -48,8 +52,11 @@ export class UsersService {
               page: searchState.selectedPage,
               pages: this.calculateNumberOfPages(
                 searchResults.total_count,
-                searchResults.items.length
+                searchState.pageSize
               ),
+              start:
+                searchState.selectedPage * searchState.pageSize -
+                (searchState.pageSize - 1),
             } as SearchResults)
         )
       );
@@ -60,6 +67,7 @@ export class UsersService {
       query,
       selectedPage,
       searchUrl: this.searchUrl,
+      pageSize: 30,
     });
   }
 }
