@@ -24,6 +24,17 @@ export class UsersService {
     );
   }
 
+  private calculateNumberOfPages(totalCount: number, pageLength: number) {
+    const remainingResults = totalCount % pageLength;
+    const totalCountWithRemainderVariance =
+      totalCount + (pageLength - remainingResults);
+    const totalPages = totalCountWithRemainderVariance / pageLength;
+    const pagesAsArray = Array(totalPages)
+      .fill(0)
+      .map((_, index) => index + 1);
+    return pagesAsArray;
+  }
+
   private searchForUsers(searchState: SearchState) {
     return this.http
       .get<SearchResults>(
@@ -35,6 +46,10 @@ export class UsersService {
             ({
               ...searchResults,
               page: searchState.selectedPage,
+              pages: this.calculateNumberOfPages(
+                searchResults.total_count,
+                searchResults.items.length
+              ),
             } as SearchResults)
         )
       );
