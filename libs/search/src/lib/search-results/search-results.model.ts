@@ -27,4 +27,5 @@ export interface SearchResults {
   items: Users;
   page: number;
   pages: number[];
+  start: number;
 }

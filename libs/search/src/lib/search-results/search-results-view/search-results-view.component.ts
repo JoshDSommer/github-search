@@ -14,5 +14,6 @@ export class SearchResultsViewComponent {
     items: [],
     page: 0,
     pages: [],
+    start: 1,
   };
 }
