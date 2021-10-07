@@ -1,5 +1,24 @@
-<ol [start]="results.start" class="list-decimal">
-  <li *ngFor="let item of results?.items">
-    {{ item.login }}
+<ol [start]="results.start" class="list-decimal mb-4">
+  <li *ngFor="let item of results?.items" class="">
+    <div class="flex flex-row my-5">
+      <img
+        [src]="item.avatar_url"
+        class="rounded-full h-24 w-24"
+        [alt]="item.login"
+      />
+      <a
+        [href]="item.html_url"
+        class="
+          text-xl
+          ml-3
+          underline
+          text-blue-600
+          hover:text-blue-800
+          visited:text-purple-600
+        "
+        target="_blank"
+        >{{ item.login }}</a
+      >
+    </div>
   </li>
 </ol>
