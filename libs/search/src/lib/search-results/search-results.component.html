@@ -8,8 +8,7 @@
     [results]="results"
   ></github-search-search-results-view>
   <github-search-page-numbers
-    [page]="results.page"
-    [numberOfPages]="results.pages"
+    [results]="results"
     (selectedPage)="pageChange($event)"
   ></github-search-page-numbers>
 </ng-container>
