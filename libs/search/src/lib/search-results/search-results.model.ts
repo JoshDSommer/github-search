@@ -26,4 +26,5 @@ export interface SearchResults {
   incomplete_results: boolean;
   items: Users;
   page: number;
+  pages: number[];
 }
