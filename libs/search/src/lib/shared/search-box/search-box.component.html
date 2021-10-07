@@ -1,0 +1,13 @@
+<div class="w-full">
+  <input
+    type="search"
+    #searchText
+    class="w-4/5 border-grey border-2 py-1"
+    (keydown.enter)="queryChanged.emit(searchText.value)"
+  /><button
+    class="w-1/5 btn btn-blue"
+    (click)="queryChanged.emit(searchText.value)"
+  >
+    Search
+  </button>
+</div>
